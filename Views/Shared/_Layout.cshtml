@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - PizzaShop</title>
+
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/MyMvcApp.styles.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/css/s.css" asp-append-version="true" />
+
+</head>
+
+<body>
+  <div class="d-flex">
+    <aside class="d-lg-block  d-none">
+      <div class="div vh-100 bg-white" style="width: 250px;">
+        <div class="d-flex gap-2 pt-3 ps-2 mb-2 align-items-center justify-content-center">
+          <img src="~/images/logos/pizzashop_logo.png" style="height: 50px;" alt="">
+          <h6 style="color: #57b9ff;">PIZZASHOP</h6>
+        </div>
+        <div class="gap-5">
+          <div class="aa">
+            <a href="" class="d-flex gap-1 pt-2 pb-2 ps-3  nav-link active align-items-center">
+              <img style="height: 25px;" src="~/images/dashboard-default.svg">
+              <div>Dashboard</div>
+            </a>
+          </div>
+          <div class="aa">
+            <a asp-controller="User" asp-action="UserList"
+              class="d-flex gap-1 ps-3 pt-2 pb-2 nav-link active align-items-center">
+              <img style="height: 25px;" src="~/images/icons/person.svg">
+              <div>Users</div>
+            </a>
+          </div>
+          <div class="aa">
+            <a asp-controller="RolesAndPermissions" asp-action="Roles"
+              class=" d-flex gap-1 pt-2 pb-2 ps-3  nav-link active align-items-center">
+              <img style="height: 25px;" src="~/images/icons/person-gear.svg">
+              <div> Role and Permission</div>
+            </a>
+          </div>
+          <div class="aa">
+            <a href="menu.html" class=" d-flex pt-2 pb-2 ps-3 gap-1  nav-link active align-items-center">
+              <img style="height: 25px;" src="~/images/icons/menu-up.svg">
+              <div>Menu</div>
+            </a>
+          </div>
+          <div class="aa">
+            <a href="#" class=" d-flex pt-2 pb-2 ps-3 gap-1 nav-link active align-items-center">
+              <img style="height: 25px;" src="~/images/icons/square-fill.svg">
+              <div>Table And Section</div>
+            </a>
+          </div>
+          <div class="aa">
+            <a href="#" class="d-flex pt-2 pb-2 ps-3 gap-1 nav-link active align-items-center">
+              <img style="height: 25px;" src="~/images/icons/currency-rupee.svg">
+              <div>Taxes and Fees</div>
+            </a>
+          </div>
+          <div class="aa">
+            <a href="#" class="d-flex pt-2 pb-2 ps-3 gap-1 nav-link active align-items-center">
+              <img style="height: 25px;" src="~/images/icons/bag-check.svg">
+              <div>Orders</div>
+            </a>
+          </div>
+          <div class="aa">
+            <a href="#" class="d-flex pt-2 pb-2 ps-3    nav-link active align-items-center">
+              <img style="height: 25px;" src="~/images/icons/customer.svg">
+              <div>Customers</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    @* <button class="btn p-0" style="border: none; background: transparent;" data-bs-toggle="dropdown"
+    aria-expanded="false">
+    <img
+    src="~/images/Default_pfp.svg.png"
+    alt="default-pfp"
+    style="max-height: 40px; aspect-ratio: 1"
+    />
+    </button>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+    </div> *@
+
+    <div class="w-100 bg-light">
+      <nav class="navbar mb-3 bg-c">
+        <div class="w-100 d-flex justify-content-between ms-2">
+          <button class="btn  d-block d-lg-none " type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+            <img src="~/images/icons/menu-symbol-of-three-parallel-lines-svgrepo-com.svg" style="height: 25px;" alt="">
+          </button>
+
+          <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+            aria-labelledby="staticBackdropLabel">
+            <div class="offcanvas-header">
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+
+              </button>
+            </div>
+            <div class="offcanvas-body">
+              <div>
+                <aside class="d-lg-block d-md-block ">
+                  <div class="div vh-100 bg-white" style="width: 250px;">
+                    <div class="d-flex gap-2 pt-3 ps-2 mb-2 align-items-center justify-content-center">
+                      <img src="~/images/logos/pizzashop_logo.png" style="height: 50px;" alt="">
+                      <h6 style="color: #57b9ff;">PIZZASHOP</h6>
+                    </div>
+                    <div class="gap-5">
+                      <div class="aa">
+                        <a href="" class="d-flex gap-1 pt-2 pb-2 ps-3 nav-link active align-items-center">
+                          <img style="height: 25px;" src="~/images/dashboard-default.svg">
+                          <div>Dashboard</div>
+                        </a>
+                      </div>
+                      <div class="aa ">
+                        <a href="/User" class=" d-flex gap-1 ps-3 pt-2 pb-2   nav-link active align-items-center">
+                          <img style="height: 25px;" src="~/images/icons/person.svg">
+                          <div>Users</div>
+                        </a>
+                      </div>
+                      <div class="aa">
+                        <a href="/Permisssion.html"
+                          class=" d-flex gap-1 pt-2 pb-2 ps-3  nav-link active align-items-center">
+                          <img style="height: 25px;" src="~/images/icons/person-gear.svg">
+                          <div> Role and Permission</div>
+                        </a>
+                      </div>
+                      <div class="aa">
+                        <a href="menu.html" class=" d-flex pt-2 pb-2 ps-3 gap-1  nav-link active align-items-center">
+                          <img style="height: 25px;" src="~/images/icons/menu-up.svg">
+                          <div>Menu</div>
+                        </a>
+                      </div>
+                      <div class="aa">
+                        <a href="#" class=" d-flex pt-2 pb-2 ps-3 gap-1 nav-link active align-items-center">
+                          <img style="height: 25px;" src="~/images/icons/square-fill.svg">
+                          <div>Table And Section</div>
+                        </a>
+                      </div>
+                      <div class="aa">
+                        <a href="#" class="d-flex pt-2 pb-2 ps-3 gap-1 nav-link active align-items-center">
+                          <img style="height: 25px;" src="~/images/icons/currency-rupee.svg">
+                          <div>Taxes and Fees</div>
+                        </a>
+                      </div>
+                      <div class="aa">
+                        <a href="#" class="d-flex pt-2 pb-2 ps-3 gap-1 nav-link active align-items-center">
+                          <img style="height: 25px;" src="~/images/icons/bag-check.svg">
+                          <div>Orders</div>
+                        </a>
+                      </div>
+                      <div class="aa">
+                        <a href="#" class="d-flex pt-2 pb-2 ps-3    nav-link active align-items-center">
+                          <img style="height: 25px;" src="~/images/icons/customer.svg">
+                          <div>Customers</div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-fluid d-flex justify-content-end">
+            <button class="btn" style="border: none; background: transparent;" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img style="height: 35px;" src="~/images/Default_pfp.svg.png" alt="Profile Picture">
+            </button>
+            <div class="dropdown-menu dropdown-menu-end">
+              <a class="dropdown-item d-flex align-items-center gap-1" href="/Profile/MyProfile">
+                <img style="height: 25px;" src="~/images/Default_pfp.svg.png"> My profile</a>
+              <a class="dropdown-item d-flex align-items-center gap-1" href="/Profile/ChangePassword">
+                <img style="height: 25px;" src="~/images/icons/arrow-clockwise.svg"> Change Password
+              </a>
+              <a class="dropdown-item d-flex gap-1" data-bs-target="#exampleModal" data-bs-toggle="modal">
+                <img style="height: 25px;" src="~/images/icons/box-arrow-right.svg">Log Out
+              </a>
+            </div>
+          </div>
+
+      </nav>
+      @RenderBody()
+    </div>
+  </div>
+
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+  @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Confirmation</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex justify-content-center align-items-center flex-column">
+        <img class="" src="images/icons/exclamation-triangle.svg" alt="">
+        <h1 class="fs-5">Are You Sure you want to Logout</h1>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <a asp-controller="Profile" class="btn btn-primary" asp-action="Logout">Yes</a>
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+@*
+ViewBag.TotalPages = (int)Math.Ceiling((double)totalUsers / pageSize);
+ViewBag.CurrentPage = pageNumber; *@

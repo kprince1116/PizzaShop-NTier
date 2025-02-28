@@ -1,0 +1,128 @@
+@model IEnumerable<DAL.Models.Userrole1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/RolesAndPermission.css">
+    <title>Document</title>
+</head>
+<body>
+  <div class="d-flex">
+   <div class="w-100">
+    <div class="bg-light mt-5">
+      <div class="row  table-responsive mx-5">
+        <table class="table border bg-white" >
+          <thead>
+          <tr>
+            <th>
+              <div class="d-flex justify-content-between">
+                <div>Role</div>
+                <div>Action</div>
+              </div>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+         
+            @foreach(var role in Model)
+            {
+              <tr>
+                <td>
+              <div class="d-flex justify-content-between">
+                <div>@role.RoleName</div>
+                <a asp-controller="RolesAndPermissions" asp-action="Permissions" id="@role.Userroleid" asp-route-id = "@role.Userroleid" >
+                  <img src="~/images/icons/pen-fill.svg" alt="">
+                </a>
+              </div>
+            </td>
+              </tr>
+            } 
+            
+          @* <tr>
+            <td>
+              <div class="d-flex justify-content-between">
+                <div>Admin</div>
+                <a href="edituser.html" >
+                  <img src="~/images/icons/pen-fill.svg" alt="">
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="d-flex justify-content-between">
+                <div>Account Manager</div>
+                <a href="edituser.html" >
+                  <img src="~/images/icons/pen-fill.svg" alt="">
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="d-flex justify-content-between">
+                <div>Chef</div>
+                <a href="edituser.html" >
+                  <img src="~/images/icons/pen-fill.svg" alt="">
+                </a>
+              </div>
+            </td>
+          </tr> *@
+          </tbody>
+        </table>
+     
+    </div>
+</div>
+    </div>
+   
+    </div>
+
+  
+    </div>
+    </div>
+  </div>
+  
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

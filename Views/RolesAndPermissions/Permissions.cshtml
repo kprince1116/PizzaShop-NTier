@@ -1,0 +1,156 @@
+@model IList<DAL.ViewModels.RolesAndPermissionsviewmodel>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style2.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="d-flex">
+    <div class="w-100 bg-light">
+      <div class="d-flex  justify-content-between">
+        <div class="ms-4">
+          <p class="fs-2" style="color: rgb(0, 102, 187);">Permission</p>
+        </div>
+        <div class="me-4 mt-2">
+          <a class="border p-2" style="background-color:rgb(0, 102, 187); text-decoration: none; color: #ffff;">
+            < Back</a>
+        </div>
+      </div>
+
+      <form method="post" asp-controller="RolesAndPermissions" asp-action="Permissions" class="bg-white border  ms-4 me-4">
+        <div class="row ps-3 pe-3 pt-3">
+          <div class="col-lg-4 pb-3 ">
+            <div class="form-floating">
+              <input type="text" class=" form-control" id="floatingInput" placeholder="name@example.com"
+                value=@ViewBag.RoleName>
+              <label for="floatingInput">Role</label>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="ms-3 me-3 mb-4  table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <div>
+                  <th scope="col">
+                    <img src="~/images/icons/dash-square.svg" alt="">
+                    Permissions
+                </div>
+                </th>
+                <th scope="col" style="text-wrap: nowrap;">Can View</th>
+                <th scope="col" style="text-wrap: nowrap;">Can Add/Edit</th>
+                <th scope="col" style="text-wrap: nowrap;">Can Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              @for (int i=0 ; i<Model.Count;i++)
+              {
+                  <tr>
+                  <th scope="row">
+                    <div class="form-check">
+                      <input type="hidden"  asp-for="@Model[i].Rolesandpermissionid">
+                      <input type="hidden"  asp-for="@Model[i].Userroleid">
+                      <input type="hidden"  asp-for="@Model[i].RoleName">
+                      <input type="hidden"  asp-for="@Model[i].Permissionid">
+                      <input type="hidden"  asp-for="@Model[i].PermissionName">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label text-nowrap" for="flexCheckDefault">
+                        @Model[i].PermissionName
+                      
+                    </div>
+                  </th>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" onclick="selectAll()" role="switch" id="flexSwitchCheckDefault"
+                        asp-for="@Model[i].CanView" >
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" onclick="selectAll()" role="switch" id="flexSwitchCheckDefault"
+                       asp-for = " @Model[i].CanAddEdit">
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" onclick="selectAll()" role="switch" id="flexSwitchCheckDefault"
+                        asp-for = "@Model[i].CanDelete">
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <div class="pe-3 pb-4 d-flex justify-content-end gap-2">
+          <button class="btn btn-outline-primary" type="submit">Save</button>
+          <button class="btn btn-primary" type="button" onclick="resetForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  </div>
+  <script src="js/bootstrap.bundle.js"></script>
+</body>
+
+</html>
+
+
+<script>
+   document.addEventListener('DOMContentLoaded',(event)=>{
+    document.querySelectorAll('.form-check-input').forEach((checkbox)=>{
+      checkbox.dataset.initial = checkbox.checked;
+    });
+   });
+
+    function resetForm(){
+      document.querySelectorAll('.form-check-input').forEach((checkbox)=>{
+        checkbox.checked = checkbox.dataset.initial === 'true';
+      })
+    }
+
+</script>
+
+@* 
+<script>
+  function selectAll(){
+    let checkboxes = document.querySelectorAll('.form-check-input');
+    let selectAll = 'true';
+    checkboxes.forEach((checkbox)=>{
+      if(!checkbox.checked){
+        selectAll = 'false';
+      }
+    });
+    document.getElementById('flexCheckDefault').checked = selectAll;
+  }
+</script> *@
+
+
+
+
+<!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+  Toggle static offcanvas
+</button>
+
+<div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="staticBackdropLabel">Offcanvas</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      I will not close if you click outside of me.
+    </div>
+  </div>
+</div> -->

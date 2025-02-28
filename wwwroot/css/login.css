@@ -1,0 +1,108 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    overflow: hidden;
+}
+
+body{
+    background-color: #D8EFF7;  
+}
+
+.form-control{
+    border-radius: 0%;
+    background-color: #ffff;
+    box-shadow: none !important;
+}
+
+.imageeeee{
+    position: absolute !important;
+    right: 10px !important;
+    top:3px !important;
+    /* height: 100px; */
+}
+
+/* .form-floating>.form-control-plaintext~label, .form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label{
+    color: rgba(var(--bs-body-color-rgb), .65);
+    transform: scale(.85) translateY(-1.9rem) translateX(.15rem) !important ;  
+  }  */
+
+.main{
+    margin-top: 250px;
+}
+
+.aa :hover{
+  background-color: #B4B4B4;
+  
+}
+
+ /* @media (max-width: 768px) {
+    .font1{
+        color: white !important;
+    }
+    #emailError{
+      color: black !important;
+    }
+    #passwordError{
+      color: black !important;
+    }
+  } 
+ */
+
+
+
+
+  /* @media only screen and (width: 425px) {
+    .font1{
+        color: white !important;
+    }
+    .forgot-password{
+      color: black !important;
+    }
+  }  */
+
+/* @media only screen and (min-width: 375px) {
+    .main{
+        margin-top: 100px;
+    }
+  } */
+
+  
+  /* @media only screen and (min-width: 1000px) {
+   /* .content{
+    margin-top: 200px;
+   } */
+   
+
+    /* @media only screen and (min-width: 1300px) {
+    .pizza{
+        margin-left: 180px;
+    }
+  } */
+  
+
+  /* @media only screen and (width: 768px) {
+    .pizza{
+        margin-left: 150px;
+    }
+  } */
+
+/* 
+  @media only screen and (width: 1024px) {
+    .main{
+        margin-top: 180px;
+    }
+  } */
+/* 
+  @media only screen and (min-width: 1214px) {
+    .main{
+        margin-top: 250px;
+    }
+  }
+
+  @media only screen and (width: 768px) {
+    .main{
+        margin-top: 50px;
+    }
+  }
+
+   */

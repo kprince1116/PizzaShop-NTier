@@ -1,0 +1,155 @@
+@model Pizzashop.DAL.ViewModels.ProfileViewmodel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="ms-5 mb-4" style="color: rgb(0, 102, 187);">
+        <h1>My Profile</h1>
+    </div>
+
+    <div class="d-flex">
+        <div class="w-100">
+            <div class="bg-white border ms-5 me-5">
+                <div class="row ">
+                    <img src="~/images/profile_div_bg.jpg" alt="bg-image" style="max-width: 100%; max-height: 10dvh;">
+                </div>
+                <div class="row px-3">
+                    <div class="UserDetails d-flex align-items-center justify-content-between">
+                        <div class="imagesec d-flex align-items-center flex-md-row flex-column">
+                            <img src="~/images/Default_pfp.svg.png" alt="" style="max-height: 100px; aspect-ratio: 1/1; margin-top: -30px;">
+                            <div class=" ms-2">
+                                <h2>@Model.Firstname @Model.Lastname</h2>
+                                <h4>@Model.userrole</h4>
+                            </div>
+                        </div>
+                        <div >
+                            <p>@Model.Email</p> 
+                        </div>
+                    </div>
+                </div>
+                <form method="post" asp-controller="Profile" asp-action="MyProfile">
+                    <div class="row ps-3 pe-3 pt-3">
+                        <div class="col-lg-6 pb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="firstnameInput" placeholder="First Name" asp-for="Firstname">
+                                <label for="firstnameInput">First Name</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 pb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="lastnameInput" placeholder="Last Name" asp-for="Lastname">
+                                <label for="lastnameInput">Last Name</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 pb-1">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="usernameInput" placeholder="User Name" asp-for="Email">
+                                <label for="usernameInput">User Name</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 pb-1">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="phonenumberInput" asp-for="Phonenumber" />
+                                <label for="phonenumberInput">Phone number</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ps-3 pe-3 pt-3">
+                        <div class="col-lg-4 pb-3">
+                            <div class="form-floating">
+                                <select class="form-select" id="countrySelect" aria-label="Floating label select example" asp-for="Country" >
+                                    <option selected>Select country</option>
+                                </select>
+                                <label for="countrySelect">Country</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 pb-3">
+                            <div class="form-floating">
+                                <select class="form-select" id="stateSelect" aria-label="Floating label select example" asp-for="State" disabled>
+                                    <option selected>Select state</option>
+                                </select>
+                                <label for="stateSelect">State</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 pb-3">
+                            <div class="form-floating">
+                                <select class="form-select" id="citySelect" aria-label="Floating label select example" asp-for="City" disabled>
+                                    <option selected>Select city</option>
+                                </select>
+                                <label for="citySelect">City</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ps-3 pe-3 pt-3">
+                        <div class="col-lg-8 pb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="addressInput" placeholder="Address" asp-for="Address">
+                                <label for="addressInput">Address</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 pb-3">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="zipcodeInput" placeholder="Zip Code" asp-for="Zipcode">
+                                <label for="zipcodeInput">Zip Code</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end gap-2 pe-3 pt-2 pb-3">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <button class="btn btn-outline-primary" type="button" onclick="window.history.back();">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.js"></script>
+</body>
+
+
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            
+            $.getJSON('/Profile/GetCountries', function (data) {    
+                $.each(data, function (index, country) {
+                    $('#countrySelect').append(`<option value="${country.countryid}">${country.countryname}</option>`); 
+                    console.log("prince");
+                    console.log(data); 
+                });
+            });
+
+            $('#countrySelect').change(function () {
+                var countryId = $(this).val();
+                $('#stateSelect').empty().append('<option selected>Select state</option>').prop('disabled', false);
+
+                $.getJSON(`/Profile/GetStates?countryId=${countryId}`, function (data) {
+                    $.each(data, function (index, state) {
+                        $('#stateSelect').append(`<option value="${state.stateid}">${state.statename}</option>`);
+                    });
+                });
+            });
+
+            $('#stateSelect').change(function () {
+                var stateId = $(this).val();
+                $('#citySelect').empty().append('<option selected>Select city</option>').prop('disabled', false);
+
+                $.getJSON(`/Profile/GetCities?stateId=${stateId}`, function (data) {
+                    $.each(data, function (index, city) {
+                        $('#citySelect').append(`<option value="${city.cityid}">${city.cityname}</option>`);
+                    });
+                });
+            });
+        });
+    </script>

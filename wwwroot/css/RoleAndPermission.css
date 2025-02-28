@@ -1,0 +1,28 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+.bg-c{
+    background-color: rgb(0, 102, 187);
+}
+
+.form-control{
+    border-radius: none !important;
+}
+
+ .form-floating>.form-control-plaintext~label, .form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label{
+    color: rgba(var(--bs-body-color-rgb), .65);
+    transform: scale(.85) translateY(-1.9rem) translateX(.15rem) !important ;  
+  } 
+
+  
+  .aa :hover{
+    background-color: #B4B4B4;
+    color: rgb(0, 102, 187);
+  }
+
+  
+ .form-switch .form-check-input{
+  margin-left:-1.5em !important;
+} 
