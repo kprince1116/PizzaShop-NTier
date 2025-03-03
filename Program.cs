@@ -21,6 +21,8 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserRolesAndPermissions, UserRolesAndPermissions>();
 builder.Services.AddScoped<IUserRolesAndPermissionsRepository, UserRolesAndPermissionsRepository>();
+builder.Services.AddScoped<IUserMenu, UserMenu>();
+builder.Services.AddScoped<IUserMenuRepository, UserMenuRepository>();
 // builder.Services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddControllersWithViews();
 

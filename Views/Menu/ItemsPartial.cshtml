@@ -1,0 +1,63 @@
+@model IEnumerable<Pizzashop.DAL.ViewModels.MenuItemsviewmodel>
+
+   <div class=" mt-3 me-3 mb-4 table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <div>
+                    <th scope="col">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                        Name
+                      </div>
+                  </div>
+                  </th>
+                  <th scope="col" style="text-align: center;">Item Type</th>
+                  <th scope="col" style="text-align: center;">Rate</th>
+                  <th scope="col" style="text-align: center;">Quantity</th>
+                  <th scope="col">Available</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach (var item in Model){
+                 <tr>
+                  <th scope="row">
+                    <div class="form-check gap-5">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                      <div class="d-flex align-items-center gap-1">
+                        <img style="height: 25px;" src="~/images/dining-menu.png" alt="">
+                        <div class="d-flex align-items-center text-nowrap">@item.Itemname</div>
+                      </div>
+                    </div>
+                  </th>
+                 
+                  <td style="text-align: center;">
+                     @if(@item.Itemtype=="veg"){
+<img style="height: 35px;" src="~/images/icons/veg-icon.svg" alt="">
+                     }else{
+                    <img style="height: 35px;" src="~/images/icons/non-veg-icon.svg" alt="">
+                    }
+                  </td>
+                  
+          
+          <td style="text-align: center;">
+            @item.Rate
+          </td>
+          <td style="text-align: center;">
+            @item.Quantity
+          </td>
+          <td>
+            <div class="ff form-check form-switch" style="text-align: center;">
+              <input class="form-check-input"  type="checkbox" role="switch" id="flexSwitchCheckChecked"  checked="@(item.IsAvailable == true ? "checked" : "")">
+          </td>
+          <td>
+            <a href="edituser.html"><img src="~/images/icons/pen-fill.svg" alt=""></a>
+            <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="~/images/icons/trash (1).svg" alt="">
+          </td>
+          </tr>
+} 
+                
+        </tbody>
+        </table>
+      </div>

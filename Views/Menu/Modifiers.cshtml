@@ -1,9 +1,3 @@
-﻿@{
-    Layout = "_Layout";
-}
-
-@* @model IEnumerable<DAL.Models.MenuCategory>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +18,7 @@
           <p class="fs-2" style="color: rgb(0, 102, 187);">Menu</p>
         </div>
       </div>
+
       <div>
 
       <div class="d-flex border ms-3 gap-4 bg-white me-3 ">
@@ -61,21 +56,94 @@
               </div>
             </div>
             <div class=" sidebar-elements">
-
-              @foreach(var category in Model)
-              {
-                 <div class="aa">
+              <div class="aa">
                 <div class="d-flex justify-content-between align-items-center">
-                <a href="" class=" d-flex gap-2 pt-2 pb-2 ps-3  nav-link active align-items-center">
+                <a href="" class="d-flex gap-2 pt-2 pb-2 ps-3  nav-link active align-items-center">
                   <img style="height: 25px;" src="~/images/icons/dots-menu-svgrepo-com.svg">
-                  <div> @category.Name</div>
+                  <div>Sandwich</div>
+                </a>
+                <div class="icons"> <a href="edituser.html"><img src="~/images/icons/pen-fill.svg" alt=""></a>
+                  <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="~/images/icons/trash (1).svg" alt="">
+                </div>
+              </div>
+              </div>
+              <div class="aa">
+                <div class="d-flex justify-content-between align-items-center">
+                <a href="" class=" d-flex gap-2 ps-3 pt-2 pb-2   nav-link active align-items-center">
+                  <img style="height: 25px;" src="~/images/icons/dots-menu-svgrepo-com.svg">
+                  <div>Pasta</div>
                 </a>
                 <div class="icons"> <a href="edituser.html"><img src="~/images/icons/pen-fill.svg" alt=""></a>
                   <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="~/images/icons/trash (1).svg" alt="">
                 </div>
                 </div>
               </div>
-              }
+              <div class="aa">
+                <div class="d-flex justify-content-between align-items-center">
+                <a href="" class=" d-flex gap-2 pt-2 pb-2 ps-3  nav-link active align-items-center">
+                  <img style="height: 25px;" src="~/images/icons/dots-menu-svgrepo-com.svg">
+                  <div> Sides and appelizers </div>
+                </a>
+                <div class="icons"> <a href="edituser.html"><img src="~/images/icons/pen-fill.svg" alt=""></a>
+                  <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="~/images/icons/trash (1).svg" alt="">
+                </div>
+                </div>
+              </div>
+              <div class="aa">
+                <div class="d-flex justify-content-between align-items-center">
+                <a href="#" class=" d-flex pt-2 pb-2 ps-3 gap-2  nav-link active align-items-center">
+                  <img style="height: 25px;" src="~/images/icons/dots-menu-svgrepo-com.svg">
+                  <div>Salads</div>
+                </a>
+                <div class="icons"> <a href="edituser.html"><img src="~/images/icons/pen-fill.svg" alt=""></a>
+                  <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="~/images/icons/trash (1).svg" alt="">
+                </div>
+                </div>
+              </div>
+              <div class="aa">
+                <div class="d-flex justify-content-between align-items-center">
+                <a href="#" class=" d-flex pt-2 pb-2 ps-3 gap-2 nav-link active align-items-center">
+                  <img style="height: 25px;" src="~/images/icons/dots-menu-svgrepo-com.svg">
+                  <div>Dips and Sauses</div>
+                </a>
+                <div class="icons"> <a href="edituser.html"><img src="~/images/icons/pen-fill.svg" alt=""></a>
+                  <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="~/images/icons/trash (1).svg" alt="">
+                </div>
+                </div>
+              </div>
+              <div class="aa">
+                <div class="d-flex justify-content-between align-items-center">
+                <a href="#" class="d-flex pt-2 pb-2 ps-3 gap-2 nav-link active align-items-center">
+                  <img style="height: 25px;" src="~/images/icons/dots-menu-svgrepo-com.svg">
+                  <div>Pizza</div>
+                </a>
+                <div class="icons"> <a href="edituser.html"><img src="~/images/icons/pen-fill.svg" alt=""></a>
+                  <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="~/images/icons/trash (1).svg" alt="">
+                </div>
+                </div>
+              </div>
+              <div class="aa">
+                <div class="d-flex justify-content-between align-items-center">
+                <a href="#" class="d-flex pt-2 pb-2 ps-3 gap-2 nav-link active align-items-center">
+                  <img style="height: 25px;" src="~/images/icons/dots-menu-svgrepo-com.svg">
+                  <div>desert</div>
+                </a>
+                <div class="icons"> <a href="edituser.html"><img src="~/images/icons/pen-fill.svg" alt=""></a>
+                  <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="~/images/icons/trash (1).svg" alt="">
+                </div>
+                </div>
+              </div>
+              <div class="aa">
+                <div class="d-flex justify-content-between align-items-center">
+                <a href="#" class="d-flex pt-2 pb-2 ps-3 gap-2   nav-link active align-items-center">
+                  <img style="height: 25px;" src="~/images/icons/dots-menu-svgrepo-com.svg">
+                  <div>Burger</div>
+                </a>
+                <div class="icons"> <a href="edituser.html"><img src="~/images/icons/pen-fill.svg" alt=""></a>
+                  <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="~/images/icons/trash (1).svg" alt="">
+                </div>
+                </div>
+              </div>
             </div>
           </div>
         </aside>
@@ -128,7 +196,7 @@
                     <div class="form-check gap-5">
                       <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
                       <div class="d-flex align-items-center gap-1">
-                        <img style="height: 25px;" src="~/images/dining-menu.png" alt="">
+                        <img style="height: 25px;" src="images/dining-menu.png" alt="">
                         <div class="d-flex align-items-center text-nowrap">Punjabi tadka Sandwitch</div>
                       </div>
                     </div>
@@ -500,4 +568,4 @@
       </div>
     </div>
   </div>
-</div> *@
+</div>
