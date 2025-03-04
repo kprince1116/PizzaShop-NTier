@@ -1,5 +1,4 @@
-@* @using Pizzashop.DAL.ViewModels *@
-@model Pizzashop.DAL.ViewModels.Categoryviewmodel;
+@model IEnumerable<Pizzashop.DAL.ViewModels.Categoryviewmodel>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +22,7 @@
         </div>
         <div>
 
-         
+
           <div class="d-flex border ms-3 gap-4 bg-white me-3 ">
 
             <ul class="nav nav-underline">
@@ -58,6 +57,7 @@
                     <div class="fs-3">Category</div>
                     <img data-bs-toggle="modal" data-bs-target="#exampleModal1" class="pe-2" style="height: 25px;"
                       src="~/images/icons/plus-square.svg" alt="">
+
                   </div>
                 </div>
                 <div class=" sidebar-elements">
@@ -65,18 +65,25 @@
                   class="d-flex gap-2 pt-2 pb-2 ps-3 nav-link active align-items-center category-link"
                   data-category-id="@category.Id"> *@
 
-                  @foreach (var category in Model.Categories)
+                  @foreach (var category in Model)
                   {
                     <div class="aa">
                       <div class="d-flex justify-content-between align-items-center">
                         <a class=" d-flex gap-2 pt-2 pb-2 ps-3  nav-link active align-items-center"
-                          data-category-id=@category.Categoryid>
+                          data-category-id="@category.CategoryId" onclick="fetchItems(@category.CategoryId)">
                           <img style="height: 25px;" src="~/images/icons/dots-menu-svgrepo-com.svg">
-                          <div> @category.Name</div>
+                          <div>@category.CategoryName</div>
                         </a>
-                        <div class="icons"> <a  data-categoryid="@category.Categoryid" class="edit-category" data-bs-toggle="modal" data-bs-target="#editModal" ><img src="~/images/icons/pen-fill.svg" alt=""></a>
-                          <img data-categoryid="@category.Categoryid" class="delete-category" data-bs-toggle="modal" data-bs-target="#deleteModal1" src="~/images/icons/trash (1).svg"
-                            alt="">
+                        <div class="icons"> <a data-category-edit-id="@category.CategoryId"
+                            data-category-name="@category.CategoryName" data-description="@category.Description"
+                            onclick="setEditData(this)" class="edit-category" data-bs-toggle="modal"
+                            data-bs-target="#editModal">
+                            <img src="~/images/icons/pen-fill.svg" alt="">
+                          </a>
+                          <a data-category1-id="@category.CategoryId" class="delete-category" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal1">
+                            <img src="~/images/icons/trash (1).svg" alt="">
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -91,10 +98,13 @@
 
               <div class="d-flex align-items-center gap-3 pe-3 justify-content-end">
                 <div class=" d-flex justify-content-end position-relative align-items-center ">
-                  <input type="text" class="search form-control" style="height: 50px;" id="userListSearch"
-                    placeholder="Search">
-                  <img src="~/images/icons/search.svg" alt="" style="width: 20px; aspect-ratio: 1"
-                    class="bg-white position-absolute rounded-2 m-2" />
+                  <div class="d-flex justify-content-end position-relative align-items-center">
+                    <input type="text" class="search form-control" style="height: 50px;" id="userListSearch"
+                      placeholder="Search" value="@ViewBag.SearchTerm">
+                    <img src="~/images/icons/search.svg" alt="" style="width: 20px; aspect-ratio: 1"
+                      class="bg-white position-absolute rounded-2 m-2" />
+                  </div>
+
 
                 </div>
 
@@ -104,13 +114,14 @@
                 </div>
                 <div class="border new-item d-flex p-lg-3 p-2" data-bs-toggle="modal" data-bs-target="#exampleModal2"
                   style="background-color: rgb(0, 102, 187); color: white; text-wrap: nowrap;">
+
                   +New Item
                 </div>
               </div>
 
 
-              <div class="ittems-container">
-                @Html.Partial("ItemsPartial", (IEnumerable<Pizzashop.DAL.ViewModels.MenuItemsviewmodel>)ViewBag.Items)
+              <div id="items-container">
+                @Html.Partial("_ItemsPartial", (IEnumerable<Pizzashop.DAL.ViewModels.MenuItemsviewmodel>)ViewBag.Items)
               </div>
 
               <div
@@ -146,6 +157,53 @@
                 </div>
               </div>
 
+              @* <div
+              class="d-flex table-footer align-items-center justify-content-end gap-lg-2 gap-md-2 gap-1 me-1 me-md-4
+              me-lg-4">
+              <div class="d-flex align-items-center gap-1 items">
+              <span class="ps-5 font2">Items Per Page</span>
+              <select class="form-select" style="width:68px ;" aria-label="Default select example"
+              id="pageSizeDropdown" onchange="changePageSize()">
+              <option selected>@ViewBag.pageSize</option>
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              </select>
+              </div>
+
+              <div class="d-flex align-items-center gap-1">
+              <span class="font2">Showing @((ViewBag.Currentpage - 1) * ViewBag.pagesize +
+              1)-@Math.Min(ViewBag.Currentpage * ViewBag.pagesize, ViewBag.totalitems) of
+              @ViewBag.totalitems</span>
+              <div class="pt-3">
+              <nav aria-label="Page navigation example">
+              <ul class="pagination gap-2">
+              <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
+              <a class="page-link"
+              href="@Url.Action("Items", new { pagenumber = ViewBag.Currentpage - 1,pagesize=ViewBag.pagesize })"
+              aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              </a>
+              </li>
+
+              <li class="page-item active">
+              <a class="page-link" href="#">@(ViewBag.Currentpage)</a>
+              </li>
+
+              <li
+              class="page-item @(ViewBag.Currentpage == ViewBag.totalitems ? "disabled" : "")">
+              <a class="page-link"
+              href="@Url.Action("Items", new { pagenumber = ViewBag.Currentpage + 1,pagesize=ViewBag.pagesize })"
+              aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              </a>
+              </li>
+              </ul>
+              </nav>
+              </div>
+              </div>
+
+              </div> *@
 
             </div>
           </div>
@@ -161,8 +219,60 @@
 
 </html>
 
+@*
 <script>
+function changePageSize() {
+var pageSize = document.getElementById("pageSizeDropdown").value;
+var currentPage = @ViewBag.CurrentPage; window.location.href = '@Url.Action("Items", "Menu")' + '?pagenumber=' +
+Currentpage + '&pageSize=' + pageSize;
+}
+</script>
+*@
 
+<script>
+  $(document).ready(function () {
+    const searchInput = $('#userListSearch');
+
+    let debounceTimer;
+    searchInput.on('input', function () {
+      clearTimeout(debounceTimer);
+      const searchTerm = $(this).val().trim();
+
+      debounceTimer = setTimeout(() => {
+        const url = new URL(window.location.href);
+        if (searchTerm) {
+          url.searchParams.set('searchTerm', searchTerm);
+        } else {
+          url.searchParams.delete('searchTerm');
+        }
+
+        $.get(url.toString(), function (data) {
+          $('#items-container').html($(data).find('#items-container').html());
+        });
+      }, 100);
+    });
+  });
+</script>
+
+
+<script>
+  function fetchItems(categoryId) {
+    console.log(categoryId);
+    $.ajax({
+      url: '@Url.Action("ItemsByCategory", "Menu")',
+      type: 'GET',
+      data: { id: categoryId },
+      success: function (data) {
+        $('#items-container').html(data);
+      }
+    });
+  }
+
+
+
+</script>
+
+<script>
   function categoryClickEvents() {
     $(document).off('click', 'category-id').on('click', '.category-id', function () {
       var categoryId = $(this).attr('category-id');
@@ -170,21 +280,65 @@
     });
   }
   $(document).ready(function () {
-    fetchItems();
     categoryClickEvents();
   }
+</script>
+<script>
 
+      function setEditData(element) {
+        var categoryId = element.getAttribute("data-category-edit-id");
+        console.log(categoryId);
+        var categoryName = element.getAttribute("data-category-name");
+        var description = element.getAttribute("data-description");
+        document.getElementById("CategoryId").value = categoryId;
+        document.getElementById("editforname").value = categoryName;
+        document.getElementById("editfordescription").value = description;
+      }
+</script>
+
+<script>
+      function resetForm() {
+        $('form')[0].reset();
+      }
 </script>
 
 
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form method="post" asp-controller="Menu" asp-action="EditCategory" class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel1">Edit Category</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-column gap-2">
+          <div class="form-floating">
+            <input type="hidden" id="CategoryId" name="CategoryId">
+            <input type="text" class="form-control" id="editforname" name="CategoryName" placeholder="Category Name">
+            <label for="editforname">Name</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="editfordescription" name="Description"
+              placeholder="Description">
+            <label for="editfordescription">Description</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" onclick="resetForm()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
 
-  <script>
-    $(document).on('click', '.delete-category', function () {
-        var categoryId = $(this).data('categoryid');
+<script>
+      $(document).on('click', '.delete-category', function () {
+        var categoryId = $(this).data('category1-id');
         console.log(categoryId);
-        $('#CategoryId').val(categoryId);
-    });
-  </script>
+        $('#CategoryId1').val(categoryId);
+      });
+</script>
 
 <div class="modal fade" id="deleteModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -197,9 +351,10 @@
         <img class="" src="images/icons/exclamation-triangle.svg" alt="">
         <h1 class="fs-5">Are You Sure you want to delete Category ?</h1>
       </div>
-      <form method="post" asp-controller="Menu" asp-action="DeleteCategory" class="modal-footer d-flex justify-content-center">
-        <input type="hidden" name="id" id="CategoryId"/>
-        <button type="submit" class="btn btn-primary" >Yes</button>
+      <form method="post" asp-controller="Menu" asp-action="DeleteCategory"
+        class="modal-footer d-flex justify-content-center">
+        <input type="hidden" name="id" id="CategoryId1" />
+        <button type="submit" class="btn btn-primary">Yes</button>
         <button type="button" class="btn btn-outline-primary">No</button>
       </form>
     </div>
@@ -207,77 +362,32 @@
 </div>
 
 
- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <form method="post" asp-controller="Menu" asp-action="AddCategory" class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel1">Add Category</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="d-flex flex-column gap-2">
-                    <div class="form-floating">
-                      <input type="text" class="form-control" id="floatingInput"
-                        name="CategoryName" placeholder="Category Name">
-                      <label for="floatingInput">Name</label>
-                    </div>
-                    <div class="form-floating">
-                      <input type="text" class="form-control" id="floatingInput" name="Description" placeholder="Description">
-                      <label for="floatingInput">Description </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Save</button>
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                </div>
-              </form>
-            </div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form method="post" asp-controller="Menu" asp-action="AddCategory" class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel1">Add Category</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-column gap-2">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" name="CategoryName" placeholder="Category Name">
+            <label for="floatingInput">Name</label>
           </div>
-
-          
-  <script>
-    $(document).on('click', '.edit-category', function () {
-        var categoryId = $(this).data('categoryid');
-        console.log(categoryId);
-        $('#CategoryId').val(categoryId);
-    });
-  </script>
-
- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <form method="post" asp-controller="Menu" asp-action="EditCategory" class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel1">Add Category</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="d-flex flex-column gap-2">
-                    <div class="form-floating">
-                      <input type="text" class="form-control" id="floatingInput" asp-for="CategoryName"
-                        name="CategoryName" placeholder="Category Name">
-                      <label for="floatingInput">Name</label>
-                    </div>
-                    <div class="form-floating">
-                      <input type="text" class="form-control" id="floatingInput" asp-for="Description" name="Description" placeholder="Description">
-                      <label for="floatingInput">Description </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Save</button>
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                </div>
-              </form>
-            </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" name="Description" placeholder="Description">
+            <label for="floatingInput">Description</label>
           </div>
-
-
-
-
-
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" onclick="resetForm()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">

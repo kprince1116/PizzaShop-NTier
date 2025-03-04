@@ -34,7 +34,7 @@
                  
                   <td style="text-align: center;">
                      @if(@item.Itemtype=="veg"){
-<img style="height: 35px;" src="~/images/icons/veg-icon.svg" alt="">
+                        <img style="height: 35px;" src="~/images/icons/veg-icon.svg" alt="">
                      }else{
                     <img style="height: 35px;" src="~/images/icons/non-veg-icon.svg" alt="">
                     }
@@ -52,7 +52,7 @@
               <input class="form-check-input"  type="checkbox" role="switch" id="flexSwitchCheckChecked"  checked="@(item.IsAvailable == true ? "checked" : "")">
           </td>
           <td>
-            <a href="edituser.html"><img src="~/images/icons/pen-fill.svg" alt=""></a>
+            <a href="edituser.html"><img src="~/images/icons/pen-fill.svg" a  lt=""></a>
             <img data-bs-toggle="modal" data-bs-target="#exampleModal" src="~/images/icons/trash (1).svg" alt="">
           </td>
           </tr>

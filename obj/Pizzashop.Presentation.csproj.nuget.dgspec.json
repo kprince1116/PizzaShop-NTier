@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\PizzaShop-Dotnet\\Pizzashop.Presentation\\Pizzashop.Presentation.csproj": {}
+    "D:\\Project\\PizzaShop-Dotnet\\pizzashop.presentation\\Pizzashop.Presentation.csproj": {}
   },
   "projects": {
     "D:\\Project\\PizzaShop-Dotnet\\BAL\\BAL.csproj": {
@@ -144,14 +144,14 @@
         }
       }
     },
-    "D:\\Project\\PizzaShop-Dotnet\\Pizzashop.Presentation\\Pizzashop.Presentation.csproj": {
+    "D:\\Project\\PizzaShop-Dotnet\\pizzashop.presentation\\Pizzashop.Presentation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\PizzaShop-Dotnet\\Pizzashop.Presentation\\Pizzashop.Presentation.csproj",
+        "projectUniqueName": "D:\\Project\\PizzaShop-Dotnet\\pizzashop.presentation\\Pizzashop.Presentation.csproj",
         "projectName": "Pizzashop.Presentation",
-        "projectPath": "D:\\Project\\PizzaShop-Dotnet\\Pizzashop.Presentation\\Pizzashop.Presentation.csproj",
+        "projectPath": "D:\\Project\\PizzaShop-Dotnet\\pizzashop.presentation\\Pizzashop.Presentation.csproj",
         "packagesPath": "C:\\Users\\pca187\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\PizzaShop-Dotnet\\Pizzashop.Presentation\\obj\\",
+        "outputPath": "D:\\Project\\PizzaShop-Dotnet\\pizzashop.presentation\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pca187\\AppData\\Roaming\\NuGet\\NuGet.Config"

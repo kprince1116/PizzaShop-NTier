@@ -14,12 +14,15 @@ public class MenuController : Controller
     {
         _userMenu = userMenu;
     }
-    public async Task<IActionResult> Items()
+
+     [Route("Menu/Items")]
+    public async Task<IActionResult> Items(int categoryId , string searchTerm =" " )
     {
         var categories = _userMenu.GetCategories();
-        var items = await _userMenu.GetItemsByCategory(categories.First().CategoryId); 
-        ViewBag.Items = items;     
-         return View(categories);
+        var items = await _userMenu.GetItemsByCategory(categories.First().CategoryId,searchTerm);
+        ViewBag.Items = items;
+        ViewBag.SearchTerm = searchTerm;
+        return View(categories);
     }
 
     [HttpPost]
@@ -33,12 +36,6 @@ public class MenuController : Controller
         else{
             return Content("error");
         }
-    }
-
-    public async Task<IActionResult> ItemsByCategory(int id)
-    {
-        var items = await _userMenu.GetItemsByCategory(id);
-        return PartialView("_ItemsPartial", items);
     }
 
     [HttpPost]
@@ -57,6 +54,14 @@ public class MenuController : Controller
         return RedirectToAction("Index","Home");
 
     }
+
+    [Route("Menu/ItemsByCategory")]
+    public async Task<IActionResult> ItemsByCategory(int id , string searchTerm =" " )
+    {
+        var items = await _userMenu.GetItemsByCategory(id,searchTerm);
+        return PartialView("_ItemsPartial", items);
+    }
+
 
     public IActionResult Modifiers()
     {

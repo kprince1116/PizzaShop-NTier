@@ -64,9 +64,9 @@ public class UserController : Controller
         //     return NotFound();
         // }
 
-        // ViewData["Country"] = new SelectList(await _userList.GetCountriesAsync() , "Countryid", "Countryname", user.Country);
-        // ViewData["State"] = new SelectList(await _userList.GetStatesAsync(), "Stateid", "Statename", user.State);
-        // ViewData["City"] = new SelectList(await _userList.GetCountriesAsync() , "Cityid", "Cityname", user.City);
+        ViewData["Country"] = new SelectList(await _userList.GetCountriesAsync() , "Countryid", "Countryname", user.Country);
+        ViewData["State"] = new SelectList(await _userList.GetStatesAsync(), "Stateid", "Statename", user.State);
+        ViewData["City"] = new SelectList(await _userList.GetCountriesAsync() , "Cityid", "Cityname", user.City);
         ViewData["Userrole"] = new SelectList(await _userList.GetRolesAsync(), "Roleid", "Rolename", user.Userrole);
 
 

@@ -3,6 +3,8 @@
 
 // Write your JavaScript code.
 
+
+
 function showToastrNotification(type, message) {
     toastr.options = {
         "closeButton": true,

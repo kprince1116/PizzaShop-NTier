@@ -23,13 +23,13 @@ builder.Services.AddScoped<IUserRolesAndPermissions, UserRolesAndPermissions>();
 builder.Services.AddScoped<IUserRolesAndPermissionsRepository, UserRolesAndPermissionsRepository>();
 builder.Services.AddScoped<IUserMenu, UserMenu>();
 builder.Services.AddScoped<IUserMenuRepository, UserMenuRepository>();
-// builder.Services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+
 builder.Services.AddControllersWithViews();
 
 var conn = builder.Configuration.GetConnectionString("defaults");
 builder.Services.AddDbContext<PizzaShopContext>(options => options.UseNpgsql(conn));
 
-// Add services to the container.
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -49,8 +49,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             OnMessageReceived = context =>
             {
-                // Check for the token in cookies
-                var token = context.Request.Cookies["jwtToken"]; // Change "AuthToken" to your cookie name if it's different
+   
+                var token = context.Request.Cookies["jwtToken"]; 
                 if (!string.IsNullOrEmpty(token))
                 {
                     context.Request.Headers["Authorization"] = "Bearer " + token;
@@ -62,11 +62,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+   
     app.UseHsts();
 }
 

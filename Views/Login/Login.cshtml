@@ -1,5 +1,5 @@
 @{
-    Layout=null;
+    Layout = null;
 }
 @model Pizzashop.DAL.ViewModels.Loginviewmodel;
 
@@ -8,9 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="~/css/login.css">
     <title>Login</title>
 </head>
@@ -19,7 +18,7 @@
         <div class="col-lg-6 col-md-12 d-lg-block d-none">
             <img style="height:100%; width: 100%;" class="img-fluid" src="~/images/dominos_background.jpg" alt="">
         </div>
-        <form  method="post" asp-controller="Login" asp-action="Login"  class="content col-lg-6 d-flex align-items-center justify-content-center col-md-12 ps-xl-5 pt-xl-5 ms-xl-0 ms-lg-0 ms-md-4">
+        <form method="post" asp-controller="Login" asp-action="Login" class="content col-lg-6 d-flex align-items-center justify-content-center col-md-12 ps-xl-5 pt-xl-5 ms-xl-0 ms-lg-0 ms-md-4">
             <div class="bg-image d-block d-lg-none position-absolute w-100 h-100" 
                 style="background-image: url('~/images/dominos_background.jpg'); background-size: cover; background-position: center; z-index: -1; opacity: 70%;">
             </div>
@@ -33,120 +32,76 @@
                 <div class="row ms-5 mb-3">
                     <h1 class="font1 fw-bold">Welcome,</h1>
                 </div>
-                <div class="row  ms-5">
-                    <form id="loginForm">
-                        <div class="mb-4 p-0 d-flex justify-content-end  col-10 position-relative">
-                            <input asp-for="Email" type="email" class="form-control" id="email" placeholder="Email">
-                            <div class="imageeeee"><img src="~/images/icons/customer.svg" alt=""></div>
-                             <span asp-validation-for="Email" style="position:absolute; bottom: -20px; left: 2px;" class="text-danger"></span>
-                            <small id="emailError" class="emailError text-danger position-absolute" style="bottom: -20px; left: 1px;"></small>
-                                   @if (ViewData.ModelState.ContainsKey("Email"))
-        {
-            <span class="text-danger" style="position:absolute; bottom: -20px; left: 1px;">
-                @ViewData.ModelState["Email"].Errors.FirstOrDefault()?.ErrorMessage
-            </span>
-        } 
-                        </div>
+                <div class="row ms-5">
+                    <div class="mb-4 p-0 d-flex justify-content-end col-10 position-relative">
+                        <input asp-for="Email" type="email" class="form-control" id="email" placeholder="Email" />
+                        <div class="imageeeee"><img src="~/images/icons/customer.svg" alt=""></div>
+                        <span asp-validation-for="Email" class="text-danger" style="position:absolute; bottom: -20px; left: 2px;"></span>
+                    </div>
 
-                        <div class="mb-3 p-0 col-10 d-flex position-relative">
-                            <input asp-for="Password" type="password" class="form-control" id="passwordinput" placeholder="Password">
-                            <div class="imageeeee"><img id="togglepassword" src="~/images/icons/eye.svg" alt=""></div>
-                            <span asp-validation-for="Password" style="position:absolute; bottom: -20px; left: 2px;" class="text-danger"></span>
-                            <small id="passwordError" class="text-danger position-absolute" style="bottom: -20px; left: 1px;"></small>
-                              @if (ViewData.ModelState.ContainsKey("Password"))
-                         {
-                             <span class="text-danger" style="position:absolute; bottom: -20px; left: 1px;">
-                                  @ViewData.ModelState["Password"].Errors.FirstOrDefault()?.ErrorMessage
-                            </span>
-                        } 
-                        </div>
+                    <div class="mb-3 p-0 col-10 d-flex position-relative">
+                        <input asp-for="Password" type="password" class="form-control" id="passwordinput" placeholder="Password" />
+                        <div class="imageeeee"><img id="togglepassword" src="~/images/icons/eye.svg" alt=""></div>
+                        <span asp-validation-for="Password" class="text-danger" style="position:absolute; bottom: -20px; left: 2px;"></span>
+                    </div>
 
-                        <div class="d-md-flex d-lg-flex d-xl-flex d-none justify-content-between col-10 mb-3 p-0">
-                            <div>
-                                <input asp-for="RememberMe" type="checkbox" id="rememberMe">
-                                <span class="font1"> Remember Me</span>
-                            </div>
-                            <a  class="forgot-password" id="forgotpassword" style="color:blue; text-decoration: none;" asp-action="ForgotPassword"> Forgot Password? </a>
+                    <div class="d-md-flex d-lg-flex d-xl-flex d-none justify-content-between col-10 mb-3 p-0">
+                        <div>
+                            <input asp-for="RememberMe" type="checkbox" id="rememberMe" />
+                            <span class="font1"> Remember Me</span>
                         </div>
+                        <a class="forgot-password" id="forgotpassword" style="color:blue; text-decoration: none;" asp-action="ForgotPassword"> Forgot Password? </a>
+                    </div>
 
-                        <div class="d-md-none d-lg-none d-xl-none justify-content-end col-10 mb-3">
-                            <div class="d-flex gap-1 justify-content-center">
-                                <input asp-for="RememberMe" type="checkbox" id="rememberMeMobile">
-                                <span >Remember Me</span>
-                            </div>
-                            <a class="d-flex justify-content-center" style="color:blue; text-decoration: none; " asp-action="ForgotPassword"> Forgot Password? </a>
-                        </div>
-
-                        <button type="submit"  class="btn btn-primary btn-sm col-10   align-items-center justify-content-center">Login</button>
-                        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                    <button type="submit" class="btn btn-primary btn-sm col-10 align-items-center justify-content-center">Login</button>
+                    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
                     {
-                    <div class="text-danger">@ViewBag.ErrorMessage</div>
-                     }
-                    </form>
+                        <div class="text-danger">@ViewBag.ErrorMessage</div>
+                    }
                 </div>
             </div>
         </form>
     </div>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @* @await RenderSectionAsync("Scripts", required: false) *@
-</body>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    <script>
+        document.getElementById("togglepassword").addEventListener("click", function () {
+            var passwordInput = document.getElementById("passwordinput");
+            var icon = document.getElementById("togglepassword");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.src = "~/images/icons/eye-slash.svg";
+            } else {
+                passwordInput.type = "password";
+                icon.src = "~/images/icons/eye.svg";
+            }
+        });
 
-<script src="js/script.js"></script>
-</html>
+        document.getElementById("forgotpassword").addEventListener("click", function (event) {
+            event.preventDefault();
+            var email = document.getElementById("email").value;
+            var url = email ? "/Login/ForgotPassword?email=" + encodeURIComponent(email) : "/Login/ForgotPassword";
+            window.location.href = url;
+        });
+    </script>
 
-
-<script>
-    document.getElementById("forgotpassword").addEventListner("Click",function(event){
-        event.preventDefault();
-        var email = document.getElementById("email").value;
-        if(email){
-            window.location.href = "/Login/ForgotPassword?email"+email;
-        }
-        else{
-             window.location.href = "/Login/ForgotPassword";
-        }
-    })
-
-</script>
-
- 
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
     <script>
         $(document).ready(function () {
             @if (TempData["LogOutSuccess"] != null && (bool)TempData["LogOutSuccess"])
             {
                 <text>
-                    showToastrNotification('success', 'User logged out successfully!');
+                    toastr.success('User logged out successfully!');
                 </text>
             }
         });
     </script>
-}
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-<script>
-document.getElementById("togglepassword").addEventListener("click",function(){
-    let password = document.getElementById("passwordinput");
-    let icon = document.getElementById("togglepassword");
-
-    if(password.type==="password"){
-        password.type="text";
-        icon.src = "~/images/icons/eye.svg";
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
     }
-    else {
-        password.type="password";
-        icon.src = "~/images/icons/eye.svg";
-    }
-
-});
-<script>
+</body>
+</html>
